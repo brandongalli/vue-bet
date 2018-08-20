@@ -1,0 +1,652 @@
+{
+  "description": "NBCUniversal Titles",
+  "details": "Imports NBC Digital Metadata into titles",
+  "updated": "Last updated may 20th 2020",
+  "icon": "movie",
+  "version": 1,
+  "type": "production",
+  "plural": "productions",
+  "schemata": {
+    "create": {
+      "Genres": { "key": "settings.meta.client.genres", "transform": "general.list" },
+      "Actors": { "key": "settings.meta.client.actors", "transform": "general.participants" },
+      "Crew": { "key": "settings.meta.client.crew", "transform": "general.participants" },
+      "Original Display Title": "name",
+      "Original Title Sort": "settings.meta.client.originalTitleSort",
+      "60 Display Title Medium": "settings.meta.client.60DisplayTitleMedium",
+      "60 Title Sort Medium": "settings.meta.client.60TitleSortMedium",
+      "19 Display Title Short": "settings.meta.client.19DisplayTitleShort",
+      "19 Title Sort Short": "settings.meta.client.19TitleSortShort",
+      "SYSGEN": "settings.meta.client.sysgen",
+      "Country of Origin": "settings.meta.client.countryOfOrigin",
+      "Digital Feature Version": "settings.meta.client.digitalFeatureVersion",
+      "Copyright": "settings.meta.client.copyright",
+      "EIDR #": "customId",
+      "ALID": "settings.meta.client.alid",
+      "UV Content ID": "settings.meta.client.uvContentId",
+      "MPAA Rating": "settings.meta.client.mpaaRaiting",
+      "CARA Rating Reasons": "settings.meta.client.caraRatingReasons",
+      "TV Parental Guidelines": "settings.meta.client.tvParentalGuidelines",
+      "CHVRS Rating": "settings.meta.client.chvrsRating",
+      "CHVRS Rating Reasons": "settings.meta.client.chvrsRatingReasons",
+      "Quebec Regie Rating": "settings.meta.client.quebecRegieRating",
+      "4000 Long Synopsis": "settings.meta.client.4000LongSynopsis",
+      "400 Medium Synopsis": "settings.meta.client.400MediumSynopsis",
+      "190 Short Synopsis": "settings.meta.client.190ShortSynopsis",
+      "Mezz File Resolution": "settings.meta.client.mezzFileResolution",
+      "Language / Audio": "settings.meta.client.languageAudio",
+      "Theatrical Aspect Ratio": "settings.meta.client.theatricalAspectRatio",
+      "Digital Picture Format": "settings.meta.client.digitalPictureFormat",
+      "Digital Aspect Ratio": "settings.meta.client.digitalAspectRatio",
+      "Digital Subtitles": "settings.meta.client.digitalSubtitles",
+      "Digital Run Time (Hours/Minutes)": "settings.meta.client.digitalRunTimeHoursMinutes",
+      "Digital Run Time (Minutes/Seconds)": "settings.meta.client.digitalRunTimeMinutesSeconds",
+      "Digital Run Time (Minutes)": "settings.meta.client.digitalRunTimeMinutes",
+      "Digital Color": "settings.meta.client.digitalColor"
+    },
+    
+    "read": {
+      "type": "object",
+      "required": ["customId", "name", "settings"],
+      "properties": {
+        "customId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "required": ["meta"],
+          "properties": {
+            "meta": {
+              "type": "object",
+              "required": ["client"],
+              "properties": {
+                "client": {
+                  "type": "object",
+                  "required": ["genres"],
+                  "properties": {
+                    "genres": {
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "update": {
+
+      "productionMedia": [
+        {
+          "component": "form",
+          "children": [
+            {
+              "component": "cover",
+              "model": "cover",
+              "fieldOptions": {
+                "on": ["input"],
+                "props": {
+                  "label": "Associated images",
+                  "caption": "The first image is the movie poster (2:3), the 2nd is the cover/display art (16:9), additional images can be used at your discression",
+                  "display": "standard",
+                  "aspects": ["2:3", "16:9"] }
+              }
+            },
+            {
+              "component": "media",
+              "model": "cover",
+              "fieldOptions": {
+                "on": ["input"],
+                "props": {
+                  "label": "Associated images",
+                  "caption": "The first image is the movie poster (2:3), the 2nd is the cover/display art (16:9), additional images can be used at your discression",
+                  "display": "standard",
+                  "aspects": ["2:3", "16:9"] }
+              }
+            }
+          ]
+        }
+      ],
+
+      "productionOffers": [
+        {
+          "component": "form",
+          "children": [
+                 {
+              "component": "activations",
+              "model": "cover",
+              "fieldOptions": {
+                "on": ["input"],
+                "props": {
+                  "label": "Associated images",
+                  "caption": "The first image is the movie poster (2:3), the 2nd is the cover/display art (16:9), additional images can be used at your discression",
+                  "display": "standard",
+                  "aspects": ["2:3", "16:9"] }
+              }
+            }
+              ]
+            
+        }
+      ],
+
+      "productionRelease": [
+        {
+          "component": "form",
+          "children": [
+
+            {
+              "component": "area",
+              "fieldOptions": {
+                "class": "text-weight-medium",
+                "props": { "label": "Release", "caption": "Ratings, Restrictions, Release Dates", "image": "" }
+              },
+              "children": [
+                
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "style": "background-color: rgb(250,250,250);",
+                    "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                    "props": { "label": "Genres", "image": "" }
+                  },
+                  "children": [
+                    {
+                      "component": "multiple-choice",
+                      "model": "settings.meta.client.genres",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "options": "settings.meta.organization.genres" }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "component": "section",
+                  "fieldOptions": {  
+                    "style": "background-color: rgb(250,250,250);",
+                    "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                    "props": { "label": "Ratings", "image": "" }
+                  },
+                  "children": [
+                    {
+                      "component": "single-choice",
+                      "model": "settings.meta.client.mpaaRaiting",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "MPAA Rating", "options": "settings.meta.organization.ratings" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.caraRatingReasons",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "CARA Rating Reasons" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.tvParentalGuidelines",
+                      "fieldOptions": {
+                        "class": "q-ml-md",
+                        "on": ["input"],
+                        "props": { "hint": "TV Parental Guidelines" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.chvrsRating",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "CHVRS Rating" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.chvrsRatingReasons",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "CHVRS Rating Reasons" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.quebecRegieRating",
+                      "fieldOptions": {
+                        "class": "q-ml-md",
+                        "on": ["input"],
+                        "props": { "hint": "Quebec Regie Rating" }
+                      }
+                    }
+
+                  ]
+                },
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "style": "background-color: rgb(250,250,250);",
+                    "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                    "props": { "label": "Release Year", "image": "" }
+                  },
+                  "children": [
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.releaseYear",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Release Year of Title" }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+
+      "productionIdentification": [
+        {
+          "component": "form",
+          "children": [
+
+            {
+              "component": "area",
+              "fieldOptions": {
+                "class": "text-weight-medium",
+                "props": { "label": "Identification", "caption": "Display Names, Descriptions and ID's", "image": "" }
+              },
+              "children": [
+               
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "style": "background-color: rgb(250,250,250);",
+                    "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                    "props": { "label": "Naming", "image": "" }
+                  },
+                  "children": [
+                    {
+                      "component": "field",
+                      "model": "name",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "Original Display Title" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.originalTitleSort",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "Original Title Sort" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.60DisplayTitleMedium",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "60 Display Title Medium" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.60TitleSortMedium",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "60 Title Sort Medium" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.19DisplayTitleShort",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "19 Display Title Short" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.19TitleSortShort",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "19 Title Sort Short" }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "style": "background-color: rgb(250,250,250);",
+                    "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                    "props": { "label": "Descriptions", "image": "" }
+                  },
+                  "children": [
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.190ShortSynopsis",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "190 Short Synopsis", "type": "textarea", "bgColor": "" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.400MediumSynopsis",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "400 Medium Synopsis", "type": "textarea", "bgColor": "" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.4000LongSynopsis",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "4000 Long Synopsis", "type": "textarea", "bgColor": "" }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+
+      
+      "productionParticipants": [
+        {
+          "component": "form",
+          "children": [
+
+            {
+              "component": "area",
+              "fieldOptions": {
+                "class": "text-weight-medium",
+                "props": { "label": "Participants", "caption": "Cast, Crew, Services, etc", "image": "" }
+              },
+              "children": [
+                
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "style": "background-color: rgb(250,250,250);",
+                    "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                    "props": { "label": "Cast", "image": "" }
+                  },
+                  "children": [
+                    {
+                      "component": "participants",
+                      "model": "settings.meta.client.actors",
+                      "fieldOptions": {
+                        "style": "background-color: rgb(250,250,250);",
+                        "class": "q-mx-md",
+                        "on": ["input"]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "style": "background-color: rgb(250,250,250);",
+                    "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                    "props": { "label": "Crew", "image": "" }
+                  },
+                  "children": [
+                    {
+                      "component": "participants",
+                      "model": "settings.meta.client.crew",
+                      "fieldOptions": {
+                        "style": "background-color: rgb(250,250,250);",
+                        "class": "q-mx-md",
+                        "on": ["input"]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "style": "background-color: rgb(250,250,250);",
+                    "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                    "props": { "label": "Services", "image": "" }
+                  },
+                  "children": [
+                    {
+                      "component": "participants",
+                      "model": "settings.meta.client.studio",
+                      "fieldOptions": {
+                        "style": "background-color: rgb(250,250,250);",
+                        "class": "q-mx-md",
+                        "on": ["input"]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+
+      "distributions": [
+        {
+          "component": "form",
+          "children": [
+            {
+              "component": "cover",
+              "model": "cover",
+              "fieldOptions": {
+                "on": ["input"],
+                "props": {
+                  "label": "Associated images",
+                  "caption": "The first image is the movie poster (2:3), the 2nd is the cover/display art (16:9), additional images can be used at your discression",
+                  "display": "standard",
+                  "aspects": ["2:3", "16:9"] }
+              }
+            },
+            {
+              "component": "media",
+              "model": "cover",
+              "fieldOptions": {
+                "on": ["input"],
+                "props": {
+                  "label": "Associated images",
+                  "caption": "The first image is the movie poster (2:3), the 2nd is the cover/display art (16:9), additional images can be used at your discression",
+                  "display": "standard",
+                  "aspects": ["2:3", "16:9"] }
+              }
+            },
+            {
+              "component": "activations",
+              "model": "cover",
+              "fieldOptions": {
+                "on": ["input"],
+                "props": {
+                  "label": "Associated images",
+                  "caption": "The first image is the movie poster (2:3), the 2nd is the cover/display art (16:9), additional images can be used at your discression",
+                  "display": "standard",
+                  "aspects": ["2:3", "16:9"] }
+              }
+            }
+          ]
+        }
+      ],
+
+      "productionTechnical": [
+        {
+          "component": "form",
+          "children": [
+            {
+              "component": "area",
+              "fieldOptions": {
+                "class": "text-weight-medium",
+                "props": { "label": "Technical", "caption": "Audio and Video", "image": "" }
+              },
+              "commands": {
+                "expandTechnical": {
+                  "return": {
+                    "guide": "`Lists this help section. If voice commands are enabled, they will be read to you.<br/>You can also get specific and more detailed help by choosing 'help' followed by the command you'd like more details about.`",
+                    "command": "return this.$console.guide()"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "style": "background-color: rgb(250,250,250);",
+                    "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                    "props": { "label": "Video", "image": "" }
+                  },
+                  "commands": {
+                    "expandVideo": {
+                      "return": {
+                        "guide": "`Lists this help section. If voice commands are enabled, they will be read to you.<br/>You can also get specific and more detailed help by choosing 'help' followed by the command you'd like more details about.`",
+                        "command": "return this.$console.guide()"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalRunTimeHoursMinutes",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "Digital Run Time (Hours/Minutes)" },
+                        "commands": {
+                          "setDigitalRunTime": {
+                            "return": {
+                              "guide": "`Lists this help section. If voice commands are enabled, they will be read to you.<br/>You can also get specific and more detailed help by choosing 'help' followed by the command you'd like more details about.`",
+                              "command": "return this.$console.guide()"
+                            }
+                          }
+                      }
+                    }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalRunTimeMinutesSeconds",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "Digital Run Time (Minutes/Seconds)" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.theatricalAspectRatio",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "Theatrical Aspect Ratio" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalRunTimeMinutes",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "Digital Run Time (Minutes)" }
+                      }
+                    },
+                    
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalAspectRatio",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "Digital Aspect Ratio" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.mezzFileResolution",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "Mezz File Resolution" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalPictureFormat",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "Digital Picture Format" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalColor",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "Digital Color" }
+                      }
+                    }
+
+                  ]
+                },
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "style": "background-color: rgb(250,250,250);",
+                    "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                    "props": { "label": "Audio", "image": "" }
+                  },
+                  "children": [
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalSubtitles",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "Digital Subtitles" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.languageAudio",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "Language / Audio" }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

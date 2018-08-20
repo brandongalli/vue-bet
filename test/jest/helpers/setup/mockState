@@ -1,0 +1,3 @@
+import ConfigState from 'src/store/config/state'
+
+export default ConfigState
