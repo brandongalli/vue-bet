@@ -1,0 +1,374 @@
+{
+  "description": "NBCUniversal distributions",
+  "details": "Imports NBC Digital Metadata into distributions",
+  "updated": "Last updated April 21st, 2020",
+  "icon": "movie",
+  "version": 1,
+  "type": "distribution",
+  "plural": "distributions",
+  "schemata": {
+    "create": {
+      "Genres": { "key": "settings.meta.client.genres", "transform": "general.list" },  
+      "Digital Run Time (Minutes)": "settings.meta.client.digitalRunTimeMinutes",
+      "Digital Color": "settings.meta.client.digitalColor",
+      "do not use": "test"
+    },
+    
+    "read": {
+      "type": "object",
+      "required": ["customId", "name", "settings"],
+      "properties": {
+        "customId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "required": ["meta"],
+          "properties": {
+            "meta": {
+              "type": "object",
+              "required": ["client"],
+              "properties": {
+                "client": {
+                  "type": "object",
+                  "required": ["genres"],
+                  "properties": {
+                    "genres": {
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "update": {
+
+      "distributionMedia": [
+        {
+          "component": "form",
+          "children": [
+            {
+              "component": "cover",
+              "model": "cover",
+              "fieldOptions": {
+                "on": ["input"],
+                "props": {
+                  "label": "Associated images",
+                  "caption": "The first image is the movie poster (2:3), the 2nd is the cover/display art (16:9), additional images can be used at your discression",
+                  "display": "standard",
+                  "aspects": ["2:3", "16:9"] }
+              }
+            },
+            {
+              "component": "media",
+              "model": "cover",
+              "fieldOptions": {
+                "on": ["input"],
+                "props": {
+                  "label": "Associated images",
+                  "caption": "The first image is the movie poster (2:3), the 2nd is the cover/display art (16:9), additional images can be used at your discression",
+                  "display": "standard",
+                  "aspects": ["2:3", "16:9"] }
+              }
+            }
+          ]
+        }
+      ],
+
+      "distributionPopMarket": [
+        {"component": "div",
+          "fieldOptions": { "class": { "row": true, "justify-start": true}},
+          "children": [
+            {
+             "component": "div",
+             "fieldOptions": {"class": {"col": true}},
+             "children": [
+              {
+                "component": "form",
+                "children": [
+      
+                  {
+                    "component": "area",
+                    "fieldOptions": {
+                      "class": "text-weight-medium",
+                      "props": { "label": "General", "caption": "Display, Description, Sharing and Media", "image": "" }
+                    },
+                    "children": [
+                      {
+                        "component": "section",
+                        "fieldOptions": {
+                          "style": "background-color: rgb(250,250,250);",
+                          "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                          "props": { "label": "Social Display", "image": "" }
+                        },
+                        "children": [
+                          {
+                            "component": "field",
+                            "model": "settings.ogMeta.ogTitle",
+                            "fieldOptions": {
+                              "class": "q-ml-lg",
+                              "on": ["input"],
+                              "props": { "hint": "SEO Title (ogTitle)" }
+                            }
+                          },
+                          {
+                            "component": "field",
+                            "model": "settings.ogMeta.ogDescription",
+                            "fieldOptions": {
+                              "class": "q-ml-lg",
+                              "on": ["input"],
+                              "props": { "hint": "SEO Description (ogDescription)", "type": "textarea", "bgColor": "" }
+                            }
+                          },
+                          {
+                            "component": "field",
+                            "model": "settings.ogMeta.ogImage",
+                            "fieldOptions": {
+                              "class": "q-ml-lg",
+                              "on": ["input"],
+                              "props": { "hint": "SEO Image (ogImage)" }
+                            }
+                          },
+                          {
+                            "component": "field",
+                            "model": "settings.ogMeta.ogUrl",
+                            "fieldOptions": {
+                              "class": "q-ml-lg q-mb-md",
+                              "on": ["input"],
+                              "props": { "hint": "SEO URL (ogUrl)" }
+                            }
+                          }     
+                        ]
+                      },
+                      {
+                        "component": "section",
+                        "fieldOptions": {
+                          "style": "background-color: rgb(250,250,250);",
+                          "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                          "props": { "label": "Name and Main Image ", "image": "" }
+                        },
+                        "children": [              
+                          {
+                            "component": "field",
+                            "model": "name",
+                            "fieldOptions": {
+                              "class": "q-ml-lg",
+                              "on": ["input"],
+                              "props": { "hint": "Name" }
+                            }
+                          },
+                          {
+                            "component": "field",
+                            "model": "cover.url",
+                            "fieldOptions": {
+                              "class": "q-ml-lg q-mb-md",
+                              "on": ["input"],
+                              "props": { "hint": "Main Image URL", "type": "text", "bgColor": "" }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "component": "form",
+                "children": [
+                  {
+                     "component": "area",
+                     "fieldOptions": {
+                       "class": "text-weight-medium",
+                       "props": { "label": "Configuration", "caption": "Settings, FAQ's, Disclosures, Etc ", "image": "" }
+                     },
+                     "children": [             
+                       {
+                         "component": "section",
+                         "fieldOptions": {
+                           "style": "background-color: rgb(250,250,250);",
+                           "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                           "props": { "label": "Experience Settings", "image": "" }
+                         },
+                         "children": [
+                          {
+                            "component": "toggle",
+                            "model": "settings.pulse",
+                            "fieldOptions": {
+                              "class": "q-ml-lg",
+                              "on": ["input"],
+                              "props": { "label": "Pulse Active", "type": "text", "bgColor": "" }
+                            }
+                          },
+                          {
+                            "component": "field",
+                            "model": "settings.language",
+                            "fieldOptions": {
+                              "class": "q-ml-lg",
+                              "on": ["input"],
+                              "props": { "hint": "Default Language", "type": "text", "bgColor": "" }
+                            }
+                          },
+                          {
+                            "component": "field",
+                            "model": "settings.logo",
+                            "fieldOptions": {
+                              "class": "q-ml-lg",
+                              "on": ["input"],
+                              "props": { "hint": "Storefront Logo", "type": "text", "bgColor": "" }
+                            }
+                          },
+                          {
+                            "component": "field",
+                            "model": "slug",
+                            "fieldOptions": {
+                              "class": "q-ml-lg",
+                              "on": ["input"],
+                              "props": { "hint": "Slug", "type": "text", "bgColor": "" }
+                            }
+                          },
+                          {
+                            "component": "field",
+                            "model": "settings.template",
+                            "fieldOptions": {
+                              "class": "q-ml-lg q-mb-md",
+                              "on": ["input"],
+                              "props": { "hint": "Template", "type": "text", "bgColor": "" }
+                            }
+                          }
+                         ]
+                       },
+                       {
+                         "component": "section",
+                         "fieldOptions": {
+                           "style": "background-color: rgb(250,250,250);",
+                           "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                           "props": { "label": "FAQ's", "image": "" }
+                         },
+                         "children": [
+                           {
+                             "component": "field",
+                             "model": "settings.faq.cover",
+                             "fieldOptions": {
+                               "class": "q-ml-lg",
+                               "on": ["input"],
+                               "props": { "hint": "FAQ Cover", "type": "text", "bgColor": "" }
+                             }
+                           },
+                           {
+                            "component": "field",
+                            "model": "settings.faq.media",
+                            "fieldOptions": {
+                              "class": "q-ml-lg q-mb-md",
+                              "on": ["input"],
+                              "props": { "hint": "FAQ Media", "type": "text", "bgColor": "" }
+                            }
+                          }
+                         ]
+                       },
+                       {
+                         "component": "section",
+                         "fieldOptions": {
+                           "style": "background-color: rgb(250,250,250);",
+                           "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                           "props": { "label": "Privacy Policy", "image": "" }
+                         },
+                         "children": [
+                           {
+                             "component": "field",
+                             "model": "settings.privacyPolicy",
+                             "fieldOptions": {
+                               "class": "q-ml-lg q-mb-md",
+                               "on": ["input"],
+                               "props": { "hint": "Privacy Policy", "type": "text", "bgColor": "" }
+                             }
+                           }
+                         ]
+                       }
+                     ]
+                  }
+                ]
+               }
+             ]
+             },
+             {
+              "component": "div",
+              "fieldOptions": {"class": {"col": true}},
+              "children": [
+                {"component": "div",
+                  "fieldOptions": { "class": { "row": true, "justify-start": true}},
+                  "children": [
+                    {
+                     "component": "div",
+                     "fieldOptions": {"class": {"col": true}},
+                     "children": [
+                      {"component": "div",
+                        "fieldOptions": { "class": { "row": true, "justify-start": true}},
+                        "children": [
+                          {
+                           "component": "div",
+                           "fieldOptions": {"class": {"col": true}},
+                           "children": [
+                              {
+                                "component": "card",
+                                "fieldOptions": {
+                                  "class": "q-ma-xs"
+                                },
+                                "children": [
+                                  {
+                                    "component": "div",
+                                    "fieldOptions": {},
+                                    "children": [] 
+                                  },
+                                  {
+                                    "component": "div"
+                                  }
+                                ]
+                              }
+                           ]
+                           }
+                          ]
+                        },
+                        {"component": "div",
+                          "fieldOptions": { "class": { "row": true, "justify-start": true}},
+                          "children": [
+                            {
+                             "component": "div",
+                             "fieldOptions": {"class": {"col": true}},
+                             "children": [
+                                
+                             ]
+                             }
+                            ]
+                          },
+                          {"component": "div",
+                            "fieldOptions": { "class": { "row": true, "justify-start": true}},
+                            "children": [
+                              {
+                               "component": "div",
+                               "fieldOptions": {"class": {"col": true}},
+                               "children": [
+                                  
+                               ]
+                               }
+                              ]
+                            }
+                     ]
+                     }
+                    ]
+                  }
+              ]
+              }
+            ]
+          }
+      ]
+
+    }
+  }
+}

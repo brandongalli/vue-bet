@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EntertainmentPlus renders correctly 1`] = `
+<div
+  class="transparent-container absolute"
+>
+  <debug-stub />
+   
+  <div
+    class="fit"
+    style="overflow: hidden; overflow-y: auto;"
+  >
+    <!---->
+     
+    <transition-stub
+      appear="true"
+      enteractiveclass="animated fadeInRight"
+      leaveactiveclass="animated fadeOutRight"
+    >
+      <!---->
+    </transition-stub>
+     
+    <transition-stub
+      appear="true"
+      enteractiveclass="animated fadeIn"
+      leaveactiveclass="animated fadeOut"
+    >
+      <thing-list-stub />
+    </transition-stub>
+     
+    <fab-stub
+      cart=""
+    />
+  </div>
+   
+  <q-dialog-stub
+    position="standard"
+  >
+    <settings-stub />
+  </q-dialog-stub>
+   
+  <q-dialog-stub
+    position="standard"
+  >
+    <login-stub />
+  </q-dialog-stub>
+   
+  <q-dialog-stub
+    position="standard"
+  >
+    <register-stub />
+  </q-dialog-stub>
+   
+  <user-profile-stub />
+   
+  <filters-dialog-stub />
+</div>
+`;

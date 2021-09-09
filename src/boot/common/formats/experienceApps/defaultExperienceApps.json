@@ -1,0 +1,477 @@
+{
+  "description": "NBCUniversal properties",
+  "details": "Imports NBC Digital Metadata into productions",
+  "updated": "Last updated April 21st, 2020",
+  "icon": "movie",
+  "version": 1,
+  "type": "production",
+  "plural": "productions",
+  "schemata": {
+    "create": {
+      "dont-use-this": { "key": "settings.meta.client.dontuse" }
+    },
+    "read": {
+      "type": "object",
+      "required": ["customId", "name", "settings"],
+      "properties": {
+        "customId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "required": ["meta"],
+          "properties": {
+            "meta": {
+              "type": "object",
+              "required": ["client"],
+              "properties": {
+                "client": {
+                  "type": "object",
+                  "required": ["genres"],
+                  "properties": {
+                    "genres": {
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "update": {
+
+      "appDetails": [
+        {
+          "component": "form",
+          "children": [
+            {
+              "component": "card", 
+              "model": "",
+              "fieldOptions": {
+                "class": "q-my-md"
+              },
+              "children": [{
+                "component": "activations",
+                "model": "cover",
+                "fieldOptions": {
+                  "on": ["input"],
+                  "props": {
+                    "label": "Associated images",
+                    "caption": "The first image is the movie poster (2:3), the 2nd is the cover/display art (16:9), additional images can be used at your discression",
+                    "display": "standard",
+                    "aspects": ["2:3", "16:9"] }
+                }
+              }]
+            },
+            {
+              "component": "card",
+              "model": "",
+              "fieldOptions": {
+                "class": "q-my-md"
+              },
+              "children": [{
+                "component": "activations",
+                "model": "cover",
+                "fieldOptions": {
+                  "on": ["input"],
+                  "props": {
+                    "label": "Associated images",
+                    "caption": "The first image is the movie poster (2:3), the 2nd is the cover/display art (16:9), additional images can be used at your discression",
+                    "display": "standard",
+                    "aspects": ["2:3", "16:9"] }
+                }
+              }]
+            },
+            {
+              "component": "card",
+              "model": "",
+              "fieldOptions": {
+                "class": "q-my-md"
+              },
+              "children": [{
+                "component": "media",
+                "model": "cover",
+                "fieldOptions": {
+                  "on": ["input"],
+                  "props": {
+                    "label": "Associated images",
+                    "caption": "The first image is the movie poster (2:3), the 2nd is the cover/display art (16:9), additional images can be used at your discression",
+                    "display": "standard",
+                    "aspects": ["2:3", "16:9"] }
+                }
+              }]
+            }
+           
+          ]
+        }
+      ],
+
+      "appDependancies": [
+        {
+          "component": "form",
+          "children": [
+            {
+              "component": "area",
+              "fieldOptions": {
+                "props": { "label": "Technical", "caption": "Audio and Video", "image": "" }
+              },
+              "commands": {
+                "expandTechnical": {
+                  "return": {
+                    "guide": "`Lists this help section. If voice commands are enabled, they will be read to you.<br/>You can also get specific and more detailed help by choosing 'help' followed by the command you'd like more details about.`",
+                    "command": "return this.$console.guide()"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "props": { "label": "Video", "image": "" }
+                  },
+                  "commands": {
+                    "expandVideo": {
+                      "return": {
+                        "guide": "`Lists this help section. If voice commands are enabled, they will be read to you.<br/>You can also get specific and more detailed help by choosing 'help' followed by the command you'd like more details about.`",
+                        "command": "return this.$console.guide()"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalRunTimeHoursMinutes",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Digital Run Time (Hours/Minutes)" },
+                        "commands": {
+                          "setDigitalRunTime": {
+                            "return": {
+                              "guide": "`Lists this help section. If voice commands are enabled, they will be read to you.<br/>You can also get specific and more detailed help by choosing 'help' followed by the command you'd like more details about.`",
+                              "command": "return this.$console.guide()"
+                            }
+                          }
+                      }
+                    }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalRunTimeMinutesSeconds",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Digital Run Time (Minutes/Seconds)" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.theatricalAspectRatio",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Theatrical Aspect Ratio" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalRunTimeMinutes",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Digital Run Time (Minutes)" }
+                      }
+                    },
+                    
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalAspectRatio",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Digital Aspect Ratio" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.mezzFileResolution",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Mezz File Resolution" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalPictureFormat",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Digital Picture Format" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalColor",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Digital Color" }
+                      }
+                    }
+
+                  ]
+                },
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "props": { "label": "Audio", "image": "" }
+                  },
+                  "children": [
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalSubtitles",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Digital Subtitles" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.languageAudio",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Language / Audio" }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+
+      "appStyle": [
+        {
+          "component": "form",
+          "children": [
+            {
+              "component": "area",
+              "fieldOptions": {
+                "props": { "label": "Technical", "caption": "Audio and Video", "image": "" }
+              },
+              "commands": {
+                "expandTechnical": {
+                  "return": {
+                    "guide": "`Lists this help section. If voice commands are enabled, they will be read to you.<br/>You can also get specific and more detailed help by choosing 'help' followed by the command you'd like more details about.`",
+                    "command": "return this.$console.guide()"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "props": { "label": "Video", "image": "" }
+                  },
+                  "commands": {
+                    "expandVideo": {
+                      "return": {
+                        "guide": "`Lists this help section. If voice commands are enabled, they will be read to you.<br/>You can also get specific and more detailed help by choosing 'help' followed by the command you'd like more details about.`",
+                        "command": "return this.$console.guide()"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalRunTimeHoursMinutes",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Digital Run Time (Hours/Minutes)" },
+                        "commands": {
+                          "setDigitalRunTime": {
+                            "return": {
+                              "guide": "`Lists this help section. If voice commands are enabled, they will be read to you.<br/>You can also get specific and more detailed help by choosing 'help' followed by the command you'd like more details about.`",
+                              "command": "return this.$console.guide()"
+                            }
+                          }
+                      }
+                    }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalRunTimeMinutesSeconds",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Digital Run Time (Minutes/Seconds)" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.theatricalAspectRatio",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Theatrical Aspect Ratio" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalRunTimeMinutes",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Digital Run Time (Minutes)" }
+                      }
+                    },
+                    
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalAspectRatio",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Digital Aspect Ratio" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.mezzFileResolution",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Mezz File Resolution" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalPictureFormat",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Digital Picture Format" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalColor",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Digital Color" }
+                      }
+                    }
+
+                  ]
+                },
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "props": { "label": "Audio", "image": "" }
+                  },
+                  "children": [
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.digitalSubtitles",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Digital Subtitles" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.languageAudio",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Language / Audio" }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+
+      "appPages": [],
+
+      "appScripts": [],
+
+      "appFiles": [],
+
+      "appInstructions": [],
+
+      "adServerDetails": [],
+
+      "adServerStyle": [],
+
+      "defaultSpaApp": [
+        {
+          "component": "form",
+          "children": [
+            {
+              "component": "card", 
+              "model": "",
+              "fieldOptions": {
+                "class": "q-my-md"
+              },
+              "children": [{
+                "component": "appDependancies",
+                "model": "appDependancies",
+                "fieldOptions": {
+                  "on": ["input"],
+                  "props": {
+                    "label": "Associated images",
+                    "caption": "The first image is the movie poster (2:3), the 2nd is the cover/display art (16:9), additional images can be used at your discression",
+                    "display": "standard",
+                    "aspects": ["2:3", "16:9"] }
+                }
+              }]
+            },
+            {
+              "component": "card",
+              "model": "",
+              "fieldOptions": {
+                "class": "q-my-md"
+              },
+              "children": [{
+                "component": "activations",
+                "model": "cover",
+                "fieldOptions": {
+                  "on": ["input"],
+                  "props": {
+                    "label": "Associated images",
+                    "caption": "The first image is the movie poster (2:3), the 2nd is the cover/display art (16:9), additional images can be used at your discression",
+                    "display": "standard",
+                    "aspects": ["2:3", "16:9"] }
+                }
+              }]
+            },
+            {
+              "component": "card",
+              "model": "",
+              "fieldOptions": {
+                "class": "q-my-md"
+              },
+              "children": [{
+                "component": "media",
+                "model": "cover",
+                "fieldOptions": {
+                  "on": ["input"],
+                  "props": {
+                    "label": "Associated images",
+                    "caption": "The first image is the movie poster (2:3), the 2nd is the cover/display art (16:9), additional images can be used at your discression",
+                    "display": "standard",
+                    "aspects": ["2:3", "16:9"] }
+                }
+              }]
+            }
+           
+          ]
+        }
+      ],
+
+      "defaultAdServer": [],
+
+      "defaultDataFeed": [],
+
+      "defaultPaymentProvider": []
+
+    }
+  }
+}

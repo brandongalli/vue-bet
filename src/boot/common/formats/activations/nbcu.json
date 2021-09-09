@@ -1,0 +1,1019 @@
+{
+  "description": "NBCUniversal offers",
+  "details": "Imports NBC Digital Metadata into activations",
+  "updated": "Last updated April 21st, 2020",
+  "icon": "movie",
+  "version": 1,
+  "type": "activation",
+  "plural": "activations",
+  "schemata": {
+    "create": {
+      "Studio": { "key": "data.dataObject.data.studio", "transform": "general.participants" },
+      "genre": { "key": "data.dataObject.data.genres", "transform": "general.list" },
+      "direct_checkout_enable": true,
+      "name": "data.dataObject.data.name",
+      "externalCatalog": "nbcDMD",
+      "order": 1000,
+      "duration": "data.dataObject.data.duration",
+      "embedUrl": "",
+      "lowestPrice": "data.dataObject.data.lowestPrice",
+      "basePrice": "data.dataObject.data.basePrice",
+      "description": "data.dataObject.data.description",
+      "year": "data.dataObject.data.year",
+      "rating": "data.dataObject.data.rating",
+      "externalProductId": "data.dataObject.data.externalProductId",
+      "crew": { "key": "data.dataObject.data.crew", "transform": "general.participants" },
+      "cast": { "key": "data.dataObject.data.cast", "transform": "general.participants" }
+    },
+    
+    "read": {
+      "type": "object",
+      "required": ["customId", "name", "settings"],
+      "properties": {
+        "customId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "required": ["meta"],
+          "properties": {
+            "meta": {
+              "type": "object",
+              "required": ["client"],
+              "properties": {
+                "client": {
+                  "type": "object",
+                  "required": ["genres"],
+                  "properties": {
+                    "genres": {
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "update": {
+
+      "offerCoverImage": [
+        {
+          "component": "div",
+          "children": [
+            {
+              "component": "div",
+                "fieldOptions": {
+                  "class": {
+                    "col-6": true
+                  },
+                  "style": {
+                    "color": "red",
+                    "fontSize": "13px",
+                    "margin": "auto"
+                  }
+                },
+                "children": [
+                  {
+                    "component": "div",
+                    "children": [
+                      {
+                        "component": "image",
+                        "model": "value.data.dataObject.media",
+                        "fieldOptions": {
+                          "on": ["input"],
+                          "props": {
+                            "src": "https://s3.amazonaws.com/ro-public-assets/digitalmoviedeals/images/MidnightRun_1920x1080_1920xx_1579825870086.jpg",
+                          "width": "100%",
+                        "class": "q-mx-md"}
+                        }
+                      }
+                    ],
+                    "fieldOptions": {     
+      
+                    }
+                  }
+            ]
+          }
+            ],
+            "fieldOptions": {
+              "class": {
+                "row": true
+              }
+            }
+          }
+      ],
+
+      "offerPosterImage": [
+        {
+          "component": "div",
+          "children": [
+            {
+              "component": "div",
+                "fieldOptions": {
+                  "class": {
+                    "col-6": true
+                  },
+                  "style": {
+                    "color": "red",
+                    "fontSize": "13px",
+                    "margin": "auto"
+                  }
+                },
+                "children": [
+                  {
+                    "component": "div",
+                    "children": [
+                      {
+                        "component": "image",
+                        "model": "value.data.dataObject.media",
+                        "fieldOptions": {
+                          "on": ["input"],
+                          "props": {
+                            "src": "https://s3.amazonaws.com/ro-public-assets/digitalmoviedeals/images/MidnightRun_1000x1400_552xx_1579825867030.jpg",
+                          "width": "100%",
+                        "class": "q-mx-md"}
+                        }
+                      }
+                    ],
+                    "fieldOptions": {     
+      
+                    }
+                  }
+            ]
+          }
+            ],
+            "fieldOptions": {
+              "class": {
+                "row": true
+              }
+            }
+          }
+      ],
+
+    "activationPreview": [
+        {
+          "component": "div",
+          "children": [
+            {
+              "component": "div",
+              "fieldOptions": {
+                "class": {
+                  "col-6": true
+                },
+                "style": {
+                  "color": "red",
+                  "fontSize": "13px",
+                  "margin": "auto"
+                }
+              },
+              "children": [
+                {
+                  "component": "div",
+                  "children": [
+                    {
+                      "component": "image",
+                      "model": "image",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": {
+                          "src": "https://s3.amazonaws.com/ro-public-assets/digitalmoviedeals/images/MidnightRun_1000x1400_552xx_1579825867030.jpg",
+                        "width": "100%",
+                      "class": "q-mx-md"}
+                      }
+                    }
+                  ],
+                  "fieldOptions": {     
+    
+                  }
+                },
+                {
+                  "component": "div",
+                  "children": [
+                    {
+                      "component": "div",
+                      "children": [
+                        {
+                          "component": "fieldBorderlessWhite",
+                          "model": "data.dataObject.data.basePrice",
+                          "fieldOptions": {
+                            "on": ["input"],
+                            "class": {"q-ml-xl": false, "q-mt-sm": false, "text-white": true, "text-strike": true, "text-subtitle2": false},
+                            "props": { "hint": "" }
+                          }
+                        }
+                      ],
+                      "fieldOptions": {   
+                        "class": {
+                          "col-3": true
+                        }   
+                      }
+                    },
+                    {
+                      "component": "div",
+                      "children": [
+                        {
+                          "component": "fieldBorderlessWhite",
+                          "model": "value.data.dataObject.data.lowestPrice",
+                          "fieldOptions": {
+                            "on": ["input"],
+                            "props": { "hint": "", "label": "$4.99", "style": "text-decoration: line-through", "classData": "text-grey-8 text-strike" },
+                            "text-decoration": "line-through"
+                          }
+                        }
+                      ],
+                      "fieldOptions": {   
+                        "class": {
+                          "col": true
+                        }   
+                      }
+                    }
+                  ],
+                  "fieldOptions": {
+                    "class": {
+                      "row": true,
+                      "justify-start": true
+                    }   
+                  }
+                }
+          ]
+        }
+          ],
+          "fieldOptions": {
+            "class": {
+              "row": true
+            }
+          }
+        }
+        
+      ],
+
+    "activationDetails": [
+        {
+          "component": "div",
+          "children": [
+            {
+              "component": "div",
+              "fieldOptions": {
+                "class": {
+                  "col-12": true
+                },
+                "style": {
+                  "fontSize": "13px",
+                  "margin": "auto"
+                }
+              },
+              "children": [
+                {
+                  "component": "div",
+                  "children": [
+                    {
+                      "component": "image",
+                      "model": "image",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "class": "q-mx-md",
+                        "props": {
+                          "src": "https://s3.amazonaws.com/ro-public-assets/digitalmoviedeals/images/MidnightRun_1920x1080_1564600605628.jpg",
+                        "width": "96%"
+                       }
+                      }
+                    }
+                  ],
+                  "fieldOptions": {     
+    
+                  }
+                },
+                {
+                  "component": "div",
+                  "children": [
+                    {
+                      "component": "div",
+                      "children": [
+                        {
+                          "component": "div",
+                          "children": [
+                            {
+                              "component": "image",
+                              "model": "image",
+                              "fieldOptions": {
+                                
+                                "on": ["input"],
+                                "class": "q-ml-xl q-mt-md",
+                                "props": {
+                                  "src": "https://s3.amazonaws.com/ro-public-assets/digitalmoviedeals/images/MidnightRun_1000x1400_1579825866620.jpg",
+                                "width": "80%"
+                             }
+                              }
+                            }
+                          ],
+                          "fieldOptions": {     
+            
+                          }
+                        }
+                      ],
+                      "fieldOptions": {   
+                        "class": {
+                          "col-3": true
+                        }   
+                      }
+                    },
+                    {
+                      "component": "div",
+                      "children": [
+                        {"component": "div",
+                          "fieldOptions": { "class": { "row": true, "justify-start": true}},
+                          "children": [{
+                             "component": "div",
+                             "fieldOptions": {"class": {"col": true, "q-ml-sm": true, "text-white": true}},
+                             "children": [
+                              {"component": "div",
+                               "fieldOptions": { "class": { "row": true}},
+                               "children": [{
+                                   "component": "div",
+                                   "fieldOptions": {"class": {"col": true}},
+                                   "children": [
+                                    {
+                                      "component": "fieldBorderlessWhite",
+                                      "model": "name",
+                                      "fieldOptions": {
+                                        "on": ["input"],
+                                        "class": {"q-ml-xl": true, "q-mt-sm": true, "text-h6": true},
+                                        "props": { "hint": "" }
+                                      }
+                                    }
+                                   ]
+                                }]
+                              },
+                              {"component": "div",
+                               "fieldOptions": { "class": { "row": true}},
+                               "children": [{
+                                     "component": "div",
+                                     "fieldOptions": {"class": {"col": true}},
+                                     "children": []
+                                }]
+                              },
+                              {"component": "div",
+                               "fieldOptions": { "class": { "row": true}},
+                               "children": [{
+                                       "component": "div",
+                                       "fieldOptions": {"class": {"col": true}},
+                                       "children": [
+                                        {
+                                          "component": "fieldBorderlessWhite",
+                                          "model": "data.dataObject.data.genre",
+                                          "fieldOptions": {
+                                            "on": ["input"],
+                                            "class": {"q-ml-xl": true, "text-subtitle2": true},
+                                            "props": { "hint": "" }
+                                          }
+                                        }
+                                       ]
+                                }]
+                               },
+                               {"component": "div",
+                                "fieldOptions": { "class": { "row": true}},
+                                "children": [{
+                                         "component": "div",
+                                         "fieldOptions": {"class": {"col": true}},
+                                         "children": [
+                                          {"component": "div",
+                                            "fieldOptions": { "class": { "row": true, "justify-start": true}},
+                                            "children": [{
+                                               "component": "div",
+                                               "fieldOptions": {"class": {"col-3": true}},
+                                               "children": [
+                                                {
+                                                  "component": "fieldBorderlessWhite",
+                                                  "model": "data.dataObject.data.basePrice",
+                                                  "fieldOptions": {
+                                                    "on": ["input"],
+                                                    "class": {"q-ml-xl": true, "q-mt-sm": true, "text-strike": true, "text-subtitle2": true},
+                                                    "props": { "hint": "" }
+                                                  }
+                                                }
+                                               ]
+                                               },
+                                               {
+                                                "component": "div",
+                                                "fieldOptions": {"class": {"col-3": true}},
+                                                "children": [
+                                                  {
+                                                    "component": "fieldBorderlessWhite",
+                                                    "model": "data.dataObject.data.lowestPrice",
+                                                    "fieldOptions": {
+                                                      "on": ["input"],
+                                                      "class": {"q-ml-xs": true, "q-mt-sm": true, "text-subtitle2": true},
+                                                      "props": { "hint": "" }
+                                                    }
+                                                  }
+                                                ]
+                                                }]
+                                            }
+                                         ]
+                                }]
+                               }
+                             ]
+                             }]
+                          }
+                      ],
+                      "fieldOptions": {   
+                        "class": {
+                          "col-9": true,
+                          "q-py-xs": true
+                        }   
+                      }
+                    }
+                  ],
+                  "fieldOptions": {
+                    "class": {
+                      "row": true
+                    }   
+                  }
+                },
+                {
+                  "component": "div",
+                  "fieldOptions": {
+                    "class": {
+                      "style": "",
+                      "row": true
+                    }
+                  },
+                  "children": [
+                    {
+                      "component": "div",
+                      "fieldOption": {
+                        "style": "",
+                        "class": {"col-12": true}
+                      },
+                    "children": [
+                      {
+                        "component": "fieldBorderlessWhite",
+                        "model": "data.dataObject.data.description",
+                        "fieldOptions": {
+                          "on": ["input"],
+                          "style": "",
+                          "class": {"q-px-xs": true, "full-width": true, "q-ma-md": true, "text-h6": true},
+                          "props": { "type": "textarea" }
+                        }
+                      }
+                  ]
+                }
+              ]
+                }
+          ]
+        }
+          ],
+          "fieldOptions": {
+            "class": {
+              "row": true,
+              "justify-start": true
+            }
+          }
+        }
+        
+      ],
+
+    "activationSocial": [
+       {
+        "component": "div",
+        "children": [
+          {
+            "component": "div",
+              "fieldOptions": {
+                "class": {
+                  "col-6": true
+                },
+                "style": {
+                  "color": "red",
+                  "fontSize": "13px",
+                  "margin": "auto"
+                }
+              },
+              "children": [
+                {
+                  "component": "div",
+                  "children": [
+                    {
+                      "component": "image",
+                      "model": "image",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": {
+                          "src": "https://s3.amazonaws.com/ro-public-assets/digitalmoviedeals/images/MidnightRun_1920x1080_1579825869581.jpg",
+                        "width": "100%",
+                      "class": "q-mx-md"}
+                      }
+                    }
+                  ],
+                  "fieldOptions": {     
+    
+                  }
+                },
+                {
+                  "component": "div",
+                  "children": [
+                    {
+                      "component": "div",
+                      "children": [
+                        {
+                          "component": "fieldborderless",
+                          "model": "value.data.dataObject.data.description"
+                         
+                        }
+                      ],
+                      "fieldOptions": {   
+                        "class": {
+                          "row": true
+                        }   
+                      }
+                    }
+                  ],
+                  "fieldOptions": {
+                    "class": {
+                      "row": true,
+                      "justify-start": true
+                    }   
+                  }
+                }
+          ]
+        }
+          ],
+          "fieldOptions": {
+            "class": {
+              "row": true
+            }
+          }
+        }
+      ],
+
+    "offerIdentification": [
+        {
+          "component": "form",
+          "fieldOptions": {
+            "class": "q-my-lg q-mx-md"
+          },
+          "children": [
+
+            {
+              "component": "area",
+              "fieldOptions": {
+                "class": "text-weight-medium",
+                "props": { "label": "General", "caption": "Display Name, Description and Media", "image": "" }
+              },
+              "children": [
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "style": "background-color: rgb(250,250,250);",
+                    "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                    "props": { "label": "Display Name and Description", "image": "" }
+                  },
+                  "children": [
+                    
+                    {
+                      "component": "field",
+                      "model": "data.dataObject.data.name",
+                      "fieldOptions": {
+                        "class": "q-ml-lg rounded-borders",
+                        "on": ["input"],
+                        "class": "",
+                        "props": { "hint": "Display Title" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "data.dataObject.data.description",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "class": "",
+                        "props": { "hint": "Display Description", "type": "textarea", "bgColor": "" }
+                      }
+                    }
+                    
+                  ]
+                },
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "style": "background-color: rgb(250,250,250);",
+                    "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                    "props": { "label": "Tracking", "image": "" }
+                  },
+                  "children": [
+                    
+                    {
+                      "component": "field",
+                      "model": "value.clientId",
+                      "fieldOptions": {
+                        "class": "q-ml-lg rounded-borders",
+                        "on": ["input"],
+                        "class": "",
+                        "props": { "hint": "OID" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "value.externalId",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "class": "",
+                        "props": { "hint": "Related EIDR", "type": "text", "bgColor": "" }
+                      }
+                    }
+                    
+                  ]
+                },
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "style": "background-color: rgb(250,250,250);",
+                    "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                    "props": { "label": "Offer Pricing", "image": "" }
+                  },
+                  "children": [
+                    
+                    {
+                      "component": "field",
+                      "model": "data.dataObject.data.basePrice",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "class": "",
+                        "props": { "hint": "Base Price (strike-through)" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "data.dataObject.data.lowestPrice",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "class": "",
+                        "props": { "hint": "Lowest Price", "type": "text", "bgColor": "" }
+                      }
+                    }
+                    
+                  ]
+                }, 
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "style": "background-color: rgb(250,250,250);",
+                    "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                    "props": { "label": "Media", "image": "" }
+                  },
+                  "children": [
+                    
+                    {
+                      "component": "productionMediaDisplay"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "component": "form",
+          "fieldOptions": {
+            "class": "q-my-lg q-mx-md"
+          },
+          "children": [
+
+            {
+              "component": "area",
+              "fieldOptions": {
+                "class": "text-weight-medium",
+                "props": { "label": "Details", "caption": "Cast, Crew, Genre, Etc", "image": "" }
+              },
+              "children": [
+               
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "style": "background-color: rgb(250,250,250);",
+                    "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                    "props": { "label": "Cast & Crew", "image": "" }
+                  },
+                  "children": [
+                    {
+                      "component": "section",
+                      "fieldOptions": {
+                        "class": "q-mx-xs",
+                        "props": { "label": "Cast", "image": "" }
+                      },
+                      "children": [
+                        {
+                          "component": "participants",
+                          "model": "data.dataObject.data.cast",
+                          "fieldOptions": {
+                            "style": "background-color: rgb(250,250,250);",
+                            "on": ["input"]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "component": "section",
+                      "fieldOptions": {
+                        "class": "q-mx-xs",
+                        "props": { "label": "Crew", "image": "" }
+                      },
+                      "children": [
+                        {
+                          "component": "participants",
+                          "model": "data.dataObject.data.crew",
+                          "fieldOptions": {
+                            "style": "background-color: rgb(250,250,250);",
+                            "on": ["input"]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "style": "background-color: rgb(250,250,250);",
+                    "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                    "props": { "label": "Synopsis", "image": "" }
+                  },
+                  "children": [
+                    {
+                      "component": "field",
+                      "model": "data.dataObject.data..4000LongSynopsis",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "4000 Long Synopsis", "type": "textarea", "bgColor": "" }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "style": "background-color: rgb(250,250,250);",
+                    "class": "q-mx-md q-my-sm rounded-borders shadow-3 q-py-sm q-px-md",
+                    "props": { "label": "Release", "image": "" }
+                  },
+                  "children": [
+                    {
+                      "component": "field",
+                      "model": "data.dataObject.data.year",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "Release Year", "type": "text", "bgColor": "" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "data.dataObject.data.rating",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "Rating", "type": "text", "bgColor": "" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "data.dataObject.data.genre",
+                      "fieldOptions": {
+                        "class": "q-ml-lg",
+                        "on": ["input"],
+                        "props": { "hint": "Genre", "type": "text", "bgColor": "" }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+
+    "offerSummary": [
+        {
+          "component": "form",
+          "children": [
+
+            {
+              "component": "area",
+              "fieldOptions": {
+                "props": { "label": "General", "caption": "Display Names, Descriptions and ID's", "image": "" }
+              },
+              "children": [
+               
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "props": { "label": "Naming", "image": "" }
+                  },
+                  "children": [
+                    {
+                      "component": "fieldBorderless",
+                      "model": "name",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Original Display Title" }
+                      }
+                    },
+                    {
+                      "component": "fieldBorderless",
+                      "model": "settings.meta.client.originalTitleSort",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Original Title Sort" }
+                      }
+                    },
+                    {
+                      "component": "fieldBorderless",
+                      "model": "settings.meta.client.60DisplayTitleMedium",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "60 Display Title Medium" }
+                      }
+                    },
+                    {
+                      "component": "fieldBorderless",
+                      "model": "settings.meta.client.60TitleSortMedium",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "60 Title Sort Medium" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.19DisplayTitleShort",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "19 Display Title Short" }
+                      }
+                    },
+                    {
+                      "component": "fieldBorderless",
+                      "model": "settings.meta.client.19TitleSortShort",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "19 Title Sort Short" }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "props": { "label": "Descriptions", "image": "" }
+                  },
+                  "children": [
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.190ShortSynopsis",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "190 TT Short Synopsis", "type": "textarea", "bgColor": "" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.400MediumSynopsis",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "400 Medium Synopsis", "type": "textarea", "bgColor": "" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.4000LongSynopsis",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "4000 Long Synopsis", "type": "textarea", "bgColor": "" }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+
+    "offerExtended": [
+        {
+          "component": "form",
+          "children": [
+
+            {
+              "component": "area",
+              "fieldOptions": {
+                "props": { "label": "General", "caption": "Display Names, Descriptions and ID's", "image": "" }
+              },
+              "children": [
+               
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "props": { "label": "Naming", "image": "" }
+                  },
+                  "children": [
+                    {
+                      "component": "fieldBorderless",
+                      "model": "name",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Original Display Title" }
+                      }
+                    },
+                    {
+                      "component": "fieldBorderless",
+                      "model": "settings.meta.client.originalTitleSort",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "Original Title Sort" }
+                      }
+                    },
+                    {
+                      "component": "fieldBorderless",
+                      "model": "settings.meta.client.60DisplayTitleMedium",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "60 Display Title Medium" }
+                      }
+                    },
+                    {
+                      "component": "fieldBorderless",
+                      "model": "settings.meta.client.60TitleSortMedium",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "60 Title Sort Medium" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.19DisplayTitleShort",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "19 Display Title Short" }
+                      }
+                    },
+                    {
+                      "component": "fieldBorderless",
+                      "model": "settings.meta.client.19TitleSortShort",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "19 Title Sort Short" }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "component": "section",
+                  "fieldOptions": {
+                    "props": { "label": "Descriptions", "image": "" }
+                  },
+                  "children": [
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.190ShortSynopsis",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "190 TT Short Synopsis", "type": "textarea", "bgColor": "" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.400MediumSynopsis",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "400 Medium Synopsis", "type": "textarea", "bgColor": "" }
+                      }
+                    },
+                    {
+                      "component": "field",
+                      "model": "settings.meta.client.4000LongSynopsis",
+                      "fieldOptions": {
+                        "on": ["input"],
+                        "props": { "hint": "4000 Long Synopsis", "type": "textarea", "bgColor": "" }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+}
+}
+   

@@ -1,0 +1,56 @@
+/*
+  Style guide
+
+  We do not modify the CSS of any HTML elements
+    Aside of being messy and overwriting user preferences, to play nice with other apps,
+    we simply can't do this and expect our app work with other apps on the same page
+    without an iframe or other limiting wrappers.
+
+  We use Symantic instead of Atomic naming
+    Basically, we choose to use "thingWrapper" instead of "padding-left-20 red".
+    Although Quasar offers atomic CSS helpers, they are meant to aid in swift construction,
+    not become a crutch to development. Although this requires more initial thought than
+    atomic names, this has been proven to be more maintainable and is recommended by the
+    CSS3 and HTML5 specs. It's also easier to understand and debug, and requires less
+    training and coding. For more information, see: https://maintainablecss.com/chapters/semantics/
+
+  BEM (Block Element and Modifier) is not sufficent for our usecase
+     Aside of BEM being opinionated and ugly, it's not enough if you share namespace with
+     other apps, and it can grow to be very ugly and pedantic in large apps.
+     See https://zellwk.com/blog/css-architecture-2/ for more details.
+
+  We use namespacing
+    We prepend everything with our namespace, which is "sd".
+    This makes it more likely that our CSS names will play nice with other frameworks
+  
+  We use cammelCase for symantic names
+    i.e. thingWrapper instead of thing-wrapper or thing_wrapper. Dashes and underscores can cause issues in passing data and schemas.
+    The first letter of a word is always lowercase.
+    Subsequent letters in following words always have their first letter capitalized "likeThisForExample"
+
+  We use dashes to separarte namespaces
+    i.e. sd-thingWrapper instead of sdthingWrapper or sd_thingWrapper
+
+  We also use dashes to separate parent-child relationships that require specific links are made in the same class
+    i.e. sd-parentComponent-childComponent
+*/
+
+// ### Things
+
+/*
+ Default wrapper
+ Requirements
+  * 80% opaque
+  * 10px padding
+ */
+
+// ### Adding debug to any element will highlight it.
+
+[debug], [debug] *:not(g):not(path) {
+	color:                 hsla(210, 100%, 100%, 0.9) !important;
+	background:            hsla(210, 100%,  50%, 0.5) !important;
+	outline: solid 0.25rem hsla(210, 100%, 100%, 0.5) !important;
+
+	box-shadow: none !important;
+	filter:     none !important;
+}

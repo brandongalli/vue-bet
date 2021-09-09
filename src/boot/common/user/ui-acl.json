@@ -1,0 +1,29 @@
+{
+  "public": {
+    "internal": false
+  },
+  "authenticated": {
+    "internal": false
+  },
+  "orgAdmin": {
+    "internal": false
+  },
+  "propertyAdmin": {
+    "internal": false
+  },
+  "developer": {
+    "internal": false
+  },
+  "platformDeveloper": {
+    "internal": true
+  },
+  "platformSales": {
+    "internal": true
+  },
+  "platformSupport": {
+    "internal": true
+  },
+  "platformAdmin": {
+    "internal": true
+  }
+}

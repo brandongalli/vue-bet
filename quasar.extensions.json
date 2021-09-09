@@ -1,0 +1,17 @@
+{
+  "@quasar/testing-unit-jest": {
+    "babel": "babelrc",
+    "options": [
+      "scripts",
+      "SFC",
+      "wallabyjs",
+      "majestic"
+    ]
+  },
+  "@quasar/testing": {
+    "harnesses": [
+      "unit-jest",
+      "e2e-webdriver"
+    ]
+  }
+}
